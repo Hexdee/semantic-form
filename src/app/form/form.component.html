@@ -38,19 +38,28 @@
                 </div>
             </div>
 
-            <div suiFormFields>
+            <div suiFormField>
                 <label>Successful</label>
-                <div suiFormField>
-                    <sui-checkbox [checked]="true" name="successful" [(ngModel)]="successful" suiValue="true"
-                        suiType="radio">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="successful" value="true" [(ngModel)]="successful" />
+                    <label>True</label>
+                </div>
+            </div>
+            <div suiFormField>
+                <div class="ui radio checkbox">
+                    <input type="radio" name="successful" value="false" [(ngModel)]="successful" />
+                    <label>False</label>
+                </div>
+                <!-- <div suiFormField>
+                    <sui-checkbox name="successful" [(ngModel)]="successful" suiValue="true" suiType="radio">
                         Yes
                     </sui-checkbox>
                 </div>
                 <div suiFormField>
-                    <sui-checkbox name="successful" [(ngModel)]="successful" suiValue="false" suiType="radio">
+                    <sui-checkbox name="successful" suiValue="false" suiType="radio">
                         No
                     </sui-checkbox>
-                </div>
+                </div> -->
             </div>
             <button sui-button type="submit">Submit</button>
 

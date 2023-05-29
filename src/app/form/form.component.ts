@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ISelectOption } from 'ngx-semantic/modules/select';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  // styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css']
 })
 
 export class FormComponent implements OnInit {
@@ -15,9 +16,9 @@ export class FormComponent implements OnInit {
   phoneNumber: string = "";
   country: string = "";
   occupation: string = "";
-  successful: boolean = true;
+  successful: string = "true";
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService, private router: Router) { }
 
   countries: ISelectOption[] = []
 
@@ -48,18 +49,20 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (this.firstName && this.lastName && this.email && this.phoneNumber && this.country && this.occupation) {
-      console.log(this.firstName, this.lastName, this.email, this.phoneNumber, this.country, this.occupation, this.successful)
-      if (this.successful) {
+      if (this.successful == "true") {
+        setTimeout(() => {
+          this.router.navigate(['/success'])
+        }, 5000)
         // Show success toastr notification
-        window.alert("Submission successful!")
+        this.toastr.success('Success!');
         // Redirect to success page
       } else {
         // Show error toastr notification for 5 seconds
         // Redirect back to the form page
-        window.alert("Submission failed!")
+        this.toastr.error("Failure!")
       }
     } else {
-      window.alert("All input required!")
+      this.toastr.error('All input required!');
       return
     }
   }
